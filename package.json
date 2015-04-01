@@ -4,7 +4,8 @@
   "description": "a game",
   "main": "game.js",
   "dependencies": {
-    "express": "^4.12.3"
+    "express": "^4.12.3",
+    "express3-handlebars": "^0.5.2"
   },
   "devDependencies": {},
   "scripts": {
