@@ -1,5 +1,8 @@
-var express = require('express');
-var message = require('./lib/random_message.js');
+var http = require('http'),
+	express = require('express');
+
+var message = require('./lib/random_message.js'),
+	credentials = require('./credentials.js');
 
 var app = express();
 
@@ -12,12 +15,46 @@ app.set('port', process.env.PORT || 3000);
 app.use(express.static(__dirname + '/public'));
 
 
-// set up test stuff
+//set up logging
+
+switch(app.get('env')){
+	case 'development':
+		app.use(require('morgan')('dev'));
+		break;
+	case 'production':
+		app.use(require('express-logger')({
+			path: __dirname + '/log/requests.log'
+		}));
+		break;
+}
+
+// set up page testing
 app.use(function(req, res, next){
 	//console.log(res.req.query);
 	res.locals.showTests = app.get('env') !== 'production' && res.req.query.test === '1';
 	next();
 });
+
+// set up mongoose
+var mongoose = require('mongoose');
+var opts = {
+	server: {
+		socketOptions: { keepAlive: 1 }
+	}
+};
+switch(app.get('env')){
+	case 'development':
+		mongoose.connect(credentials.mongo.development.connectionString, opts);
+		break;
+	case 'production':
+		mongoose.connect(credentials.mongo.production.connectionString, opts);
+		break;
+	default:
+		throw new Error('Unknown execution environment: ' + app.get('env'));
+}
+
+
+
 
 //basic routing
 app.get('/', function(req, res){
@@ -44,8 +81,8 @@ app.use(function(err, req, res, next){
 	res.render('500');
 });
 
-app.listen(app.get('port'), function(){
-	console.log('Express started on http://localhost:' + 
+http.createServer(app).listen(app.get('port'), function(){
+	console.log('Express started in ' + app.get('env') + ' on http://localhost:' + 
 		app.get('port') + '; press Ctrl-C to terminate.');
 });
 
