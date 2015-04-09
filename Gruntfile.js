@@ -15,7 +15,7 @@ module.exports = function(grunt){
 			app: ['game.js', 'public/js/**/*.js', 'lib/**/*.js'],
 			qa: ['Gruntfile.js', 'public/qa/**/*.js', 'qa/**/*.js'],
 		}
-	});
+	});  
 
 	// register tasks
 	grunt.registerTask('default', ['cafemocha', 'jshint']);
