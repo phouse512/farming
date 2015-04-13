@@ -6,6 +6,7 @@ var farmSchema = mongoose.Schema({
 	name: String,
 	width: Number,
 	height: Number,
+	gameTime: String,
 });
 
 var Farm = mongoose.model('Farm', farmSchema);

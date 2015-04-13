@@ -1,5 +1,6 @@
 var main = require('./handlers/main.js'),
-	soils = require('./handlers/soils.js');
+	soils = require('./handlers/soils.js'),
+	users = require('./handlers/users.js');
 
 
 module.exports = function(app){
@@ -9,4 +10,8 @@ module.exports = function(app){
 
 	// soils
 	app.get('/soils', soils.listSoils);
+
+
+	// users
+	app.get('/users', users.listUsers);
 }

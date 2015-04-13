@@ -3,7 +3,9 @@ var http = require('http'),
 
 var message = require('./lib/random_message.js'),
 	credentials = require('./credentials.js'),
-	starter_soils = require('./models/seed_data/starter_soils.js');
+	starter_soils = require('./models/seed_data/starter_soils.js'),
+	starter_farms = require('./models/seed_data/starter_farms.js'),
+	starter_users = require('./models/seed_data/starter_users.js');
 
 var app = express();
 
@@ -61,6 +63,8 @@ switch(app.get('env')){
 }
 
 starter_soils.seedSoil();
+starter_users.seedUser();
+//starter_farms.generateFarm(10,10);
 
 
 //basic routing
@@ -76,6 +80,7 @@ app.get('/about', function(req, res){
 });
 
 require('./routes.js')(app);
+
 
 // custom 404 page
 app.use(function(req, res){

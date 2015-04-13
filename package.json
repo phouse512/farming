@@ -4,6 +4,7 @@
   "description": "a game",
   "main": "game.js",
   "dependencies": {
+    "bcrypt": "^0.8.2",
     "express": "^4.12.3",
     "express-logger": "0.0.3",
     "express3-handlebars": "^0.5.2",
