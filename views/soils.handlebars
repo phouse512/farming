@@ -1,0 +1,37 @@
+<div class="row">
+	<div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
+		<h4>Soils:</h4>
+		<table class="table table-striped">
+			<tr>
+				<th>
+					name:
+				</th>      
+				<th>
+					_id:
+				</th>
+				<th>
+					fertility:
+				</th>
+				<th>
+					waterRetention:
+				</th>
+			</tr>
+			{{#each soils }}
+			<tr>
+				<td>
+				{{ this.name }}
+				</td>
+				<td>
+				{{ this._id }}
+				</td>
+				<td>
+				{{ this.fertility }}
+				</td>
+				<td>
+				{{ this.waterRetention }}
+				</td>
+			</tr>
+			{{/each }}
+		</table>
+	</div>
+</div>

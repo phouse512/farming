@@ -8,7 +8,8 @@
     "express-logger": "0.0.3",
     "express3-handlebars": "^0.5.2",
     "mongoose": "^4.0.1",
-    "morgan": "^1.5.2"
+    "morgan": "^1.5.2",
+    "passport": "^0.2.1"
   },
   "devDependencies": {
     "chai": "^2.2.0",
@@ -22,5 +23,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Philip House",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phouse512/farming.git"
+  }
 }

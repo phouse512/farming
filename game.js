@@ -2,18 +2,25 @@ var http = require('http'),
 	express = require('express');
 
 var message = require('./lib/random_message.js'),
-	credentials = require('./credentials.js');
+	credentials = require('./credentials.js'),
+	starter_soils = require('./models/seed_data/starter_soils.js');
 
 var app = express();
 
-var handlebars = require('express3-handlebars').create({ defaultLayout: 'main' });
+var handlebars = require('express3-handlebars').create({ 
+	defaultLayout: 'main',
+	helpers: {
+		static: function(name) {
+			return require('./lib/static.js').map(name);
+		}
+	}
+});
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
 app.set('port', process.env.PORT || 3000);
 
 app.use(express.static(__dirname + '/public'));
-
 
 //set up logging
 
@@ -53,7 +60,7 @@ switch(app.get('env')){
 		throw new Error('Unknown execution environment: ' + app.get('env'));
 }
 
-
+starter_soils.seedSoil();
 
 
 //basic routing
@@ -68,6 +75,7 @@ app.get('/about', function(req, res){
 	});
 });
 
+require('./routes.js')(app);
 
 // custom 404 page
 app.use(function(req, res){
