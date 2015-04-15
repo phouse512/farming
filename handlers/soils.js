@@ -2,6 +2,6 @@ Soil = require('../models/soil.js');
 
 exports.listSoils = function(req, res){
 	Soil.find(function(err, soils){
-		res.render('soils', { soils: soils });
+		res.render('soils/listSoils', { soils: soils });
 	});
 }

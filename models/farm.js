@@ -7,6 +7,7 @@ var farmSchema = mongoose.Schema({
 	width: Number,
 	height: Number,
 	gameTime: String,
+	player: { type: mongoose.Schema.Types.ObjectId, ref: 'Player'}
 });
 
 var Farm = mongoose.model('Farm', farmSchema);
