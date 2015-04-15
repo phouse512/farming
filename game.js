@@ -64,7 +64,7 @@ switch(app.get('env')){
 
 starter_soils.seedSoil();
 starter_users.seedUser();
-//starter_farms.generateFarm(10,10);
+starter_farms.seedFarm();
 
 
 //basic routing
