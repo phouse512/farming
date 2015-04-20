@@ -1,5 +1,9 @@
 var http = require('http'),
-	express = require('express');
+	express = require('express'),
+	cookieParser = require('cookie-parser'),
+	bodyParser = require('body-parser'),
+	session = require('express-session'),
+	passport = require('passport');
 
 var message = require('./lib/random_message.js'),
 	credentials = require('./credentials.js'),
@@ -8,6 +12,9 @@ var message = require('./lib/random_message.js'),
 	starter_users = require('./models/seed_data/starter_users.js');
 
 var app = express();
+
+// require('./config/passport')(passport); // pass passport for configuration
+
 
 var handlebars = require('express3-handlebars').create({ 
 	defaultLayout: 'main',
@@ -62,24 +69,21 @@ switch(app.get('env')){
 		throw new Error('Unknown execution environment: ' + app.get('env'));
 }
 
+app.use(cookieParser());
+app.use(bodyParser());
+app.use(session({ secret: 'ilovepie' }));
+
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+
 starter_soils.seedSoil();
 starter_users.seedUser();
 starter_farms.seedFarm();
 
 
-//basic routing
-app.get('/', function(req, res){
-	res.render('home');
-});
 
-app.get('/about', function(req, res){
-	res.render('about', { 
-		message: message.getMessage(),
-		pageTestScript: '/qa/about-tests.js'
-	});
-});
 
-require('./routes.js')(app);
+require('./routes.js')(app, passport);
 
 
 // custom 404 page

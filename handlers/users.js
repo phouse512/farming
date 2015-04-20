@@ -5,3 +5,18 @@ exports.listUsers = function(req, res){
 		res.render('users/listUsers', { users: users });
 	});
 }
+
+exports.login = function(req, res){
+	res.render('users/login');
+}
+
+exports.userProfile = function(req, res){
+	res.render('/users/profile', {
+		user: req.user,
+	});
+}
+
+exports.logout = function(req, res){
+	req.logout();
+	res.redirect('/');
+}

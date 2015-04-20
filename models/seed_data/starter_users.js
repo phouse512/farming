@@ -3,7 +3,7 @@ User = require('../user.js');
 exports.seedUser = function(){
 	User.find(function(err, users){
 		if(users.length){
-			console.log('Some users exist');
+			console.log('Some users already exist, not seeding');
 			return;
 		}
 
