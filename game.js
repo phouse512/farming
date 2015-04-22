@@ -3,7 +3,8 @@ var http = require('http'),
 	cookieParser = require('cookie-parser'),
 	bodyParser = require('body-parser'),
 	session = require('express-session'),
-	passport = require('passport');
+	passport = require('passport'),
+	flash = require('connect-flash');
 
 var message = require('./lib/random_message.js'),
 	credentials = require('./credentials.js'),
@@ -13,7 +14,7 @@ var message = require('./lib/random_message.js'),
 
 var app = express();
 
-// require('./config/passport')(passport); // pass passport for configuration
+require('./lib/passport.js')(passport); // pass passport for configuration
 
 
 var handlebars = require('express3-handlebars').create({ 
@@ -75,16 +76,20 @@ app.use(session({ secret: 'ilovepie' }));
 
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
+app.use(flash());
 
 starter_soils.seedSoil();
 starter_users.seedUser();
 starter_farms.seedFarm();
 
+// // attach user to every context
+// app.use(function(req, res, next){
+// 	res.locals.user = req.user;
+// 	next();
+// });
 
-
-
+// register routes
 require('./routes.js')(app, passport);
-
 
 // custom 404 page
 app.use(function(req, res){

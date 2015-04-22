@@ -1,4 +1,7 @@
-User = require('../user.js');
+var User = require('../user.js'),
+	bcrypt = require('bcrypt-nodejs'),
+	SALT_WORK_FACTOR = 10;
+
 
 exports.seedUser = function(){
 	User.find(function(err, users){

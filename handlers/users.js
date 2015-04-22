@@ -11,7 +11,7 @@ exports.login = function(req, res){
 }
 
 exports.userProfile = function(req, res){
-	res.render('/users/profile', {
+	res.render('users/userProfile', {
 		user: req.user,
 	});
 }
@@ -19,4 +19,8 @@ exports.userProfile = function(req, res){
 exports.logout = function(req, res){
 	req.logout();
 	res.redirect('/');
+}
+
+exports.signup = function(req, res){
+	res.render('users/signup');
 }
