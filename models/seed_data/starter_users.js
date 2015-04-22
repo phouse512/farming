@@ -1,6 +1,4 @@
-var User = require('../user.js'),
-	bcrypt = require('bcrypt-nodejs'),
-	SALT_WORK_FACTOR = 10;
+var User = require('../user.js');
 
 
 exports.seedUser = function(){
@@ -11,20 +9,22 @@ exports.seedUser = function(){
 		}
 
 		console.log('Seeding with base users');
-		new User({
-			username: 'phouse512',
-			password: 'house',
-			email: 'philiphouse2015@u.northwestern.edu',
-			version: 1.0,
-			lastAction: Date.now(),
-		}).save();
+		newUser1 = new User();
+		newUser1.username = 'phouse512';
+		newUser1.password = newUser1.generateHash('house');
+		newUser1.email = 'philiphouse2015@u.northwestern.edu';
+		newUser1.version = 1.0;
+		newUser1.lastAction = Date.now();
 
-		new User({
+		newUser2 = new User({
 			username: 'test',
-			password: 'test',
 			email: 'phouse512@gmail.com',
 			version: 1.0,
 			lastAction: Date.now(),
-		}).save();
+		});
+		newUser2.password = newUser2.generateHash('test');
+
+		newUser1.save();
+		newUser2.save();
 	});
 }
