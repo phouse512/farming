@@ -4,7 +4,8 @@ var http = require('http'),
 	bodyParser = require('body-parser'),
 	session = require('express-session'),
 	passport = require('passport'),
-	flash = require('connect-flash');
+	flash = require('connect-flash'),
+	jquery = require('jquery');
 
 var message = require('./lib/random_message.js'),
 	credentials = require('./credentials.js'),
@@ -22,6 +23,9 @@ var handlebars = require('express3-handlebars').create({
 	helpers: {
 		static: function(name) {
 			return require('./lib/static.js').map(name);
+		},
+		json: function(context) {
+			return JSON.stringify(context);
 		}
 	}
 });
@@ -83,10 +87,10 @@ starter_users.seedUser();
 starter_farms.seedFarm();
 
 // // attach user to every context
-// app.use(function(req, res, next){
-// 	res.locals.user = req.user;
-// 	next();
-// });
+app.use(function(req, res, next){
+	res.locals.user = req.user;
+	next();
+});
 
 // register routes
 require('./routes.js')(app, passport);

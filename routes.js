@@ -29,7 +29,7 @@ module.exports = function(app, passport){
 	app.get('/logout', users.logout);
 
 	// core game routes
-	app.get('/game', main.gameHome);
+	app.get('/game', isLoggedIn, main.gameHome);
 
 
 	// soils

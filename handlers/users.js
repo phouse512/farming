@@ -7,13 +7,11 @@ exports.listUsers = function(req, res){
 }
 
 exports.login = function(req, res){
-	res.render('users/login');
+	res.render('users/login', { message: req.flash('loginMessage')});
 }
 
 exports.userProfile = function(req, res){
-	res.render('users/userProfile', {
-		user: req.user,
-	});
+	res.render('users/userProfile');
 }
 
 exports.logout = function(req, res){
@@ -22,5 +20,5 @@ exports.logout = function(req, res){
 }
 
 exports.signup = function(req, res){
-	res.render('users/signup');
+	res.render('users/signup', { message: req.flash('signupMessage')});
 }

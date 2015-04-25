@@ -3,3 +3,7 @@ node_modules
 
 # ignore credentials
 credentials.js
+
+# bundle.js
+/public/vendor/bundle.js
+

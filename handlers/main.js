@@ -2,10 +2,9 @@ Farm = require('../models/farm.js');
 message = require('../lib/random_message.js'),
 
 exports.gameHome = function(req, res){
-	Farm.find(function(err, farms){
-		console.log(farms);
+	Farm.find({ 'player': req.user._id }).populate('landPlots').exec(function(err, farm){
+		res.render('gameHome', { farm: farm[0].exportArray() });
 	});
-	res.render('gameHome');
 }
 
 exports.about = function(req, res){
