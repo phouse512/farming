@@ -11,7 +11,11 @@ var message = require('./lib/random_message.js'),
 	credentials = require('./credentials.js'),
 	starter_soils = require('./models/seed_data/starter_soils.js'),
 	starter_farms = require('./models/seed_data/starter_farms.js'),
-	starter_users = require('./models/seed_data/starter_users.js');
+	//starter_users = require('./models/seed_data/starter_users.js'),
+	starter_items = require('./models/seed_data/starter_items.js'),
+	starter_seeds = require('./models/seed_data/starter_seeds.js'),
+	starter_tillTools = require('./models/seed_data/starter_tillTools.js'),
+	starter_waterTools = require('./models/seed_data/starter_waterTools.js');
 
 var app = express();
 
@@ -83,8 +87,12 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash());
 
 starter_soils.seedSoil();
-starter_users.seedUser();
-starter_farms.seedFarm();
+// starter_users.seedUser();
+// starter_farms.seedFarm();
+// starter_items.seedItem();
+// starter_seeds.seedSeed();
+// starter_tillTools.seedTillTool();
+// starter_waterTools.seedWaterTool();
 
 // // attach user to every context
 app.use(function(req, res, next){

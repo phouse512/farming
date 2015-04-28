@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var seedSchema = mongoose.Schema({
 	name: String,
 	yieldAmount: Number,
-	yieldItem: { type: mongoose.Schema.Types.ObjectId, ref: 'Growable' },
+	yieldItem: { type: mongoose.Schema.Types.ObjectId, ref: 'Item' },
 	growthStages: [String],
 	stageRate: Number,
 	quality: String,

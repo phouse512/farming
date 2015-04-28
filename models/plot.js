@@ -8,6 +8,9 @@ var plotSchema = mongoose.Schema({
 	waterLevel: Number,
 	status: String,
 	farm: { type: mongoose.Schema.Types.ObjectId, ref: 'Farm' },
+	seed: { type: mongoose.Schema.Types.ObjectId, ref: 'Seed' },
+	stage: Number,
+	xp: Number,
 });
 
 var Plot = mongoose.model('Plot', plotSchema);

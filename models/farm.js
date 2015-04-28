@@ -1,4 +1,5 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+	deepPopulate = require('mongoose-deep-populate');
 
 var farmSchema = mongoose.Schema({
 	landPlots: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Plot' }],
@@ -9,6 +10,8 @@ var farmSchema = mongoose.Schema({
 	gameTime: String,
 	player: { type: mongoose.Schema.Types.ObjectId, ref: 'Player'}
 });
+
+farmSchema.plugin(deepPopulate);
 
 farmSchema.methods.exportArray = function(err) {
 	var new_plot = new Array(this.height);

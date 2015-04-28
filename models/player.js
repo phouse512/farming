@@ -8,7 +8,7 @@ var playerSchema = mongoose.Schema({
 	farmingExperience: Number,
 	equippedTool: { type: mongoose.Schema.Types.ObjectId, ref: 'Equippable' },
 	version: Number,
-	inventory: [ ObjectId ],
+	inventory: [ mongoose.Schema.Types.ObjectId ],
 });
 
 var Player = mongoose.model('Player', playerSchema);

@@ -18,8 +18,12 @@ exports.generateFarm = function(height, width, player_id, version){
 		if (err) return handleError(err);
 
 		var plots = new Array(height);
+		console.log(plots);
 		var soils_array = [];
-		Soil.find(function(err, soils){
+		//console.log(soils);
+		Soil.find({}, function(err, soilS){
+			console.log(soilS);
+			soils = soilS;
 			// create plots with random soils
 			for(var i=0; i < plots.length; i++){
 				plots[i] = new Array(width);
@@ -46,31 +50,19 @@ exports.generateFarm = function(height, width, player_id, version){
 
 				doc.save(function(err, saved){
 					if (err) throw err;
-					console.log(saved._id);
+					//console.log(saved._id);
 					saved_plots.push(saved[0]);
 					farm.landPlots.push(saved);
-					console.log(farm.landPlots);
+					//console.log(farm.landPlots);
 
 					farm.save(function(err){
-						console.log(farm.landPlots[0]);
+						//console.log(farm.landPlots[0]);
 						if (--total) saveAll();
 					});
-					
-					//else
 				});
 			}
 			saveAll();
-
-
-
-
-
-			
-
-			//console.log(soils_array);
-			//console.log(saved_plots);
-
-
+			console.log("done saving");
 		});		
 	});
 }
@@ -83,11 +75,10 @@ exports.seedFarm = function(){
 		}
 
 		console.log('Seeding with base farm');
-		console.log(exports.generateFarm);
 		User.findOne({ 'email': 'philiphouse2015@u.northwestern.edu' }, function(err, user) {
 			if (err)
 				return err;
-
+			console.log(user);
 			exports.generateFarm(5,5, user._id, 1.0);
 		});
 	});

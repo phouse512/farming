@@ -17,6 +17,7 @@
     "kinetic": "^5.2.0",
     "lodash": "^3.7.0",
     "mongoose": "^4.0.1",
+    "mongoose-deep-populate": "^1.1.0",
     "morgan": "^1.5.2",
     "passport": "^0.2.1",
     "passport-local": "^1.0.0"
