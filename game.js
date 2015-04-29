@@ -11,7 +11,7 @@ var message = require('./lib/random_message.js'),
 	credentials = require('./credentials.js'),
 	starter_soils = require('./models/seed_data/starter_soils.js'),
 	starter_farms = require('./models/seed_data/starter_farms.js'),
-	//starter_users = require('./models/seed_data/starter_users.js'),
+	starter_users = require('./models/seed_data/starter_users.js'),
 	starter_items = require('./models/seed_data/starter_items.js'),
 	starter_seeds = require('./models/seed_data/starter_seeds.js'),
 	starter_tillTools = require('./models/seed_data/starter_tillTools.js'),
@@ -30,6 +30,11 @@ var handlebars = require('express3-handlebars').create({
 		},
 		json: function(context) {
 			return JSON.stringify(context);
+		},
+		section: function(name, options) {
+			if(!this._sections) this._sections = {};
+			this._sections[name] = options.fn(this);
+			return null;
 		}
 	}
 });
@@ -78,6 +83,8 @@ switch(app.get('env')){
 		throw new Error('Unknown execution environment: ' + app.get('env'));
 }
 
+starter_soils.seedSoil();
+
 app.use(cookieParser());
 app.use(bodyParser());
 app.use(session({ secret: 'ilovepie' }));
@@ -86,13 +93,12 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash());
 
-starter_soils.seedSoil();
-// starter_users.seedUser();
-// starter_farms.seedFarm();
-// starter_items.seedItem();
-// starter_seeds.seedSeed();
-// starter_tillTools.seedTillTool();
-// starter_waterTools.seedWaterTool();
+starter_users.seedUser();
+starter_farms.seedFarm();
+starter_items.seedItem();
+starter_seeds.seedSeed();
+starter_tillTools.seedTillTool();
+starter_waterTools.seedWaterTool();
 
 // // attach user to every context
 app.use(function(req, res, next){

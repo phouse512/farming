@@ -11,6 +11,11 @@ var userSchema = mongoose.Schema({
 	lastAction: Date,
 });
 
+userSchema.pre('save', function(next) {
+	console.log('user saving');
+	next();
+});
+
 userSchema.methods.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(SALT_WORK_FACTOR), null);
 };

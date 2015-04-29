@@ -6,5 +6,5 @@ var soilSchema = mongoose.Schema({
 	waterRetention: Number,
 }, { collection: 'soils' });
 
-var Soil = mongoose.model('Soil', soilSchema);
+var Soil = mongoose.model('Soil', soilSchema, 'soils');
 module.exports = Soil;

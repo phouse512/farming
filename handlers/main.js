@@ -7,8 +7,13 @@ var mongoose = require('mongoose'),
 	deepPopulate = require('mongoose-deep-populate');
 
 exports.gameHome = function(req, res){
-	Farm.find({ 'player': req.user._id }).deepPopulate(['landPlots', 'player', 'landPlots.soilType', 'landPlots.seed']).exec(function(err, farm){
-		res.render('gameHome', { farm: farm[0].exportArray() });
+	console.log(req.user);
+	Player.findOne({ 'user': req.user._id }).populate('inventory').exec(function(err, player) {
+		Farm.find({ 'player': player._id }).deepPopulate(['landPlots', 'landPlots.soilType', 'landPlots.seed']).exec(function(err, farm){
+			finalFarm = farm[0].exportArray();
+			finalFarm.player = player;
+			res.render('gameHome', { farm: finalFarm });
+		});
 	});
 }
 

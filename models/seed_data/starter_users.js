@@ -1,5 +1,5 @@
-var User = require('../user.js');
-
+var User = require('../user.js'),
+	Player = require('../player.js');
 
 exports.seedUser = function(){
 	User.find(function(err, users){
@@ -24,7 +24,27 @@ exports.seedUser = function(){
 		});
 		newUser2.password = newUser2.generateHash('test');
 
-		newUser1.save();
-		newUser2.save();
+		newUser1.save(function(err, data){
+			new Player({
+				energy: 10,
+				energyTotal: 10,
+				user: data._id,
+				farmingLevel: 1,
+				farmingExperience: 0,
+				version: 1.0,
+				inventory: [],
+			}).save();
+		});
+		newUser2.save(function(err, data){
+			new Player({
+				energy: 10,
+				energyTotal: 10,
+				user: data._id,
+				farmingLevel: 1,
+				farmingExperience: 0,
+				version: 1.0,
+				inventory: [],
+			}).save();
+		});
 	});
 }

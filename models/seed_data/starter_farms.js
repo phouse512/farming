@@ -1,7 +1,8 @@
-Farm = require('../farm.js');
-Soil = require('../soil.js');
-Plot = require('../plot.js');
-User = require('../user.js');
+var Farm = require('../farm.js'),
+	Soil = require('../soil.js'),
+	Plot = require('../plot.js'),
+	Player = require('../player.js'),
+	User = require('../user.js');
 
 mongoose = require('mongoose');
 
@@ -78,8 +79,11 @@ exports.seedFarm = function(){
 		User.findOne({ 'email': 'philiphouse2015@u.northwestern.edu' }, function(err, user) {
 			if (err)
 				return err;
-			console.log(user);
-			exports.generateFarm(5,5, user._id, 1.0);
+
+			Player.findOne({ 'user': user._id }, function(err, player){
+				console.log(player);
+				exports.generateFarm(5,5, player._id, 1.0);
+			});
 		});
 	});
 }

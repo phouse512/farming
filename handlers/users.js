@@ -1,4 +1,4 @@
-Soil = require('../models/user.js');
+User = require('../models/user.js');
 
 exports.listUsers = function(req, res){
 	User.find(function(err, users){

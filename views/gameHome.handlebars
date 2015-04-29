@@ -1,3 +1,33 @@
+{{#section 'head'}}
+	<script id="playerTemplate" type="text/x-handlebars-template">
+		<div id="playerEnergy"></div>
+		<h5>Inventory:</h5>
+		\{{#if player.inventory}}
+			<ul class="list-group">
+			\{{#each player.inventory}}
+				<li class="list-group-item"><b>\{{this.name}}:</b> \{{this.description}}
+			\{{/each}}
+			</ul>
+		\{{else}}
+			<p>None</p>
+		\{{/if}}
+	</script>
+{{/section}}
+
 <h2>Welcome to the home game</h2>
 <hr />
-<p>woot</p>
+
+<div class="row">
+	<div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1">
+		<div id="container"></div>
+	</div>
+	<div class="col-lg-4 col-md-4">
+		<div id="player"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	farm = "{{json farm}}";
+	str = farm.replace(/&quot;/g, '"');
+	HMS.display($.parseJSON(str));
+</script>
