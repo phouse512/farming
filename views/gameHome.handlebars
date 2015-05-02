@@ -12,17 +12,40 @@
 			<p>None</p>
 		\{{/if}}
 	</script>
+
+	<script id="plotHoverTemplate" type="text/x-handlebars-template">
+		<ul class="list-group">
+			<li class="list-group-item">
+				<b>Fertility:</b> \{{ plot.soilType.fertility }}
+			</li>
+			<li class="list-group-item">
+				<b>Nutrients:</b> \{{ plot.nutrientConcentration }}
+			</li>	
+			<li class="list-group-item">
+				<b>Water Level:</b> \{{ plot.waterLevel }}
+			</li>
+		</ul>
+
+	</script>
 {{/section}}
 
-<h2>Welcome to the home game</h2>
-<hr />
 
 <div class="row">
-	<div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1">
+	<div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1">
 		<div id="container"></div>
 	</div>
+	<div class="col-lg-2 col-md-2">
+		<div class="panel panel-default">
+			<div id="plot" class="panel-body">Hover over plots to see more info
+			</div>
+		</div>
+	</div>
 	<div class="col-lg-4 col-md-4">
-		<div id="player"></div>
+		<div class="panel panel-default">
+			<div id="player" class="panel-body">
+
+			</div>
+		</div>
 	</div>
 </div>
 

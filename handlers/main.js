@@ -7,7 +7,6 @@ var mongoose = require('mongoose'),
 	deepPopulate = require('mongoose-deep-populate');
 
 exports.gameHome = function(req, res){
-	console.log(req.user);
 	Player.findOne({ 'user': req.user._id }).populate('inventory').exec(function(err, player) {
 		Farm.find({ 'player': player._id }).deepPopulate(['landPlots', 'landPlots.soilType', 'landPlots.seed']).exec(function(err, farm){
 			finalFarm = farm[0].exportArray();
