@@ -1,5 +1,7 @@
 {{#section 'head'}}
 	<script id="playerTemplate" type="text/x-handlebars-template">
+		<h6>Farming Level: \{{ player.farmingLevel }}</h6>
+		<h6>Farming Experience: \{{ player.farmingExperience }}</h6>
 		<div id="playerEnergy"></div>
 		<h5>Inventory:</h5>
 		\{{#if player.inventory}}
@@ -25,7 +27,6 @@
 				<b>Water Level:</b> \{{ plot.waterLevel }}
 			</li>
 		</ul>
-
 	</script>
 {{/section}}
 
