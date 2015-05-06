@@ -33,6 +33,7 @@ exports.seedUser = function(){
 				farmingExperience: 0,
 				version: 1.0,
 				inventory: [],
+				toolInventory: [],
 			}).save();
 		});
 		newUser2.save(function(err, data){
@@ -44,6 +45,7 @@ exports.seedUser = function(){
 				farmingExperience: 0,
 				version: 1.0,
 				inventory: [],
+				toolInventory: [],
 			}).save();
 		});
 	});

@@ -12,14 +12,14 @@ module.exports = function(app, passport){
 
 	app.get('/login', users.login);
 	app.post('/login', passport.authenticate('local-login', {
-		successRedirect: '/profile',
+		successRedirect: '/game',
 		failureRedirect: '/login',
 		failureFlash: true,
 	}));
 
 	app.get('/signup', users.signup);
 	app.post('/signup', passport.authenticate('local-signup', {
-		successRedirect: '/profile',
+		successRedirect: '/game',
 		failureRedirect: '/signup',
 		failureFlash: true,
 	}));

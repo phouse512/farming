@@ -14,8 +14,7 @@ var message = require('./lib/random_message.js'),
 	starter_users = require('./models/seed_data/starter_users.js'),
 	starter_items = require('./models/seed_data/starter_items.js'),
 	starter_seeds = require('./models/seed_data/starter_seeds.js'),
-	starter_tillTools = require('./models/seed_data/starter_tillTools.js'),
-	starter_waterTools = require('./models/seed_data/starter_waterTools.js');
+	starter_tools = require('./models/seed_data/starter_tools.js');
 
 var app = express();
 
@@ -97,8 +96,7 @@ starter_users.seedUser();
 starter_farms.seedFarm();
 starter_items.seedItem();
 starter_seeds.seedSeed();
-starter_tillTools.seedTillTool();
-starter_waterTools.seedWaterTool();
+starter_tools.seedTool();
 
 // // attach user to every context
 app.use(function(req, res, next){

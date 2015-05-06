@@ -9,6 +9,7 @@ var playerSchema = mongoose.Schema({
 	equippedTool: { type: mongoose.Schema.Types.ObjectId, ref: 'Equippable' },
 	version: Number,
 	inventory: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Item' } ],
+	toolInventory: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Tool' } ],
 });
 
 var Player = mongoose.model('Player', playerSchema);
