@@ -9,7 +9,10 @@
 		\{{#if player.inventory}}
 			<ul class="list-group">
 			\{{#each player.inventory}}
-				<li class="list-group-item"><b>\{{this.name}}:</b> \{{this.description}}
+				<li class="list-group-item">
+					<b>\{{this.name}}:</b> 
+					\{{this.description}}
+				</li>
 			\{{/each}}
 			</ul>
 		\{{else}}
@@ -20,7 +23,21 @@
 		\{{#if player.toolInventory}}
 			<ul class="list-group">
 			\{{#each player.toolInventory}}
-				<li class="list-group-item"><b>\{{this.name}}:</b> \{{this.description}}
+				<li class="list-group-item tool">
+					<b>\{{this.name}}:</b> 
+					\{{this.description}}
+					<hr style="width: 50%"/>
+					<div class="row">
+						<div class="col-lg-5">
+							<h5>Available Actions:</h5>
+						</div>
+						<div class="col-lg-4">
+							<a class="btn btn-block btn-primary">
+								\{{this.toolType}}
+							</a>
+						</div>
+					</div>
+				</li>
 			\{{/each}}
 			</ul>
 		\{{else}}
@@ -29,6 +46,7 @@
 	</script>
 
 	<script id="plotHoverTemplate" type="text/x-handlebars-template">
+		<h5>\{{plot.soilType.name}}: \{{plot.soilType.description}}</h5>
 		<ul class="list-group">
 			<li class="list-group-item">
 				<b>Fertility:</b> \{{ plot.soilType.fertility }}
